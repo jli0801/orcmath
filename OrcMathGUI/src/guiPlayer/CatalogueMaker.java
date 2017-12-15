@@ -40,7 +40,7 @@ public class CatalogueMaker {
 	{
 		String[] newAnswers = new String[3];
 		int[] commaIndex = new int[3];
-		for(int index = 0; index < answer.length(); i++)
+		for(int index = 0; index < answer.length(); index++)
 		{
 			if(answer.substring(index, index+1) == ",")
 			{
@@ -49,7 +49,8 @@ public class CatalogueMaker {
 		}
 		newAnswers[0] = answer.substring(0, commaIndex[0]);
 		newAnswers[1] = answer.substring(newAnswers[0].length()-1, commaIndex[1]);
-	
+		newAnswers[2] = answer.substring(newAnswers[1].length()-1, commaIndex[2]);
+		return newAnswers;
 	}
 	
 	public void addNewItem(String n, String s, String c)
