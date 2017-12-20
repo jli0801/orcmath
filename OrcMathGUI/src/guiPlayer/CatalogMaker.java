@@ -11,7 +11,8 @@ import java.util.Scanner;
 
 public class CatalogMaker {
 
-	Scanner in = new Scanner(System.in);
+	private static boolean running;
+	static Scanner in = new Scanner(System.in);
 	private static ArrayList<Gundam> list;
 	
 	public CatalogMaker() {
@@ -28,13 +29,105 @@ public class CatalogMaker {
 	public static void main(String[] args) {
 	
 		CatalogMaker x = new CatalogMaker();
-		System.out.println(x.getCSVContent());
-		System.out.println("What would you like to add? Seperate them using commas.");
-		Scanner in = new Scanner(System.in);
-		x.seperateAdd(in.nextLine());
-		x.testSaveContent();
+		in = new Scanner(System.in);
+		x.menu();
 	}
 	
+
+	private void menu() {
+		displayMessage("Would you like to \"load\" a save file or \"create\" a new list? ");
+		String[] allowedEntry = {"load","create"};
+		String input = getEntry(allowedEntry);
+		if(input.equals("load")){
+			load();
+		}else{
+			create();
+		}
+	}  
+	
+	private void load()
+	{
+		String fileName = "";
+		//empty the catalog to prepare for a new load
+		list = new ArrayList<Gundam>();
+		//use this boolean to control the while loop. The user should have multiple chances to enter a correct filename
+		boolean opened = false;
+		while(!opened){
+			try {
+				System.out.println("Enter a file to open");
+				fileName = in.nextLine();
+				FileReader fileReader = new FileReader(new File(fileName));
+				String line = "";
+				//a BufferedReader enables us to read teh file one line at a time
+				BufferedReader br = new BufferedReader(fileReader);
+				while ((line = br.readLine()) != null) {
+
+					String[] param = line.split(",");
+					//add a new Book for each line in the save file
+					list.add(new Gundam(param[0],param[1],param[2]));
+
+
+
+				}
+				br.close();
+				opened = true;
+			}catch (IOException e) {
+				System.out.println("The file name you specified does not exist.");
+			}
+		}
+		create();
+	}
+
+	private void create() {
+
+		boolean running = true;
+		while(running){
+			getCSVContent();
+			displayMessage("Would you like to \"add\", \"save\", or \"quit\"?");
+			String[] allowedEntry = {"add","save","quit"};
+			String selection = getEntry(allowedEntry);
+			if(selection.equals("add")){
+				addGundam();
+			}else if(selection.equals("save")){
+				testSaveContent();
+			}else{
+				running = false;
+			}
+		}
+	}
+
+	private static void addGundam() {
+		String name = null;
+		String series = null;
+		String color = null;
+		
+		displayMessage("Please enter a name.");
+		name = getStringInput();
+		displayMessage("Please enter an series.");
+		series = getStringInput();
+		displayMessage("Please enter the color.");
+		color = getStringInput();
+		addGundam(new Gundam(name, series, color));
+	}
+
+	private static String getStringInput() {
+		String text = in.nextLine();
+		while(text.isEmpty()){
+			displayMessage("You must enter a non-empty String.");
+			text = in.nextLine();
+		}
+		return text;
+	}
+
+	private static void addGundam(Gundam gundam) {
+		list.add(gundam);
+	}
+
+
+	private static String getEntry(String[] allowedEntry) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 	private static String separate(String s) {
 		String[] splitAns = s.split(",");
@@ -42,6 +135,9 @@ public class CatalogMaker {
 		
 		//list.add(new Gundam (splitAns[0], splitAns[1], splitAns[2]));
 	
+	}
+	private static void displayMessage(String message){
+		System.out.println(message);
 	}
 	
 	 private static void testSaveContent() {

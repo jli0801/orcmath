@@ -22,7 +22,7 @@ public class Gundam extends AnimatedComponent {
 		this.color = color;
 	
 		
-		addSequence("resources/ss2.png", 180,0,0,28,38,8);
+	//	addSequence("resources/ss2.png", 180,0,0,28,38,8);
 		Thread animation = new Thread(this);
 		animation.start();
 		update();
