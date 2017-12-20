@@ -11,7 +11,7 @@ import guiTeacher.userInterfaces.FullFunctionScreen;
 public class CatalogScreen extends FullFunctionScreen {
 
 	private TextField descriptionField;
-	private Button addButton;
+	private Button buttonOne;
 	
 	public CatalogScreen(int width, int height) {
 		super(width, height);
@@ -27,7 +27,7 @@ public class CatalogScreen extends FullFunctionScreen {
 		viewObjects.add(descriptionField);
 		descriptionField = new TextField(40,170,200,30,"Color", "Description3");
 		viewObjects.add(descriptionField);
-		addButton = new Button(40,230,100,100, "Add", new Action() {
+		buttonOne = new Button(40,230,100,100, "Add", new Action() {
 			
 			@Override
 			public void act() {
@@ -35,7 +35,7 @@ public class CatalogScreen extends FullFunctionScreen {
 				
 			}
 		});
-		viewObjects.add(addButton);
+		viewObjects.add(buttonOne);
 		
 	}
 
