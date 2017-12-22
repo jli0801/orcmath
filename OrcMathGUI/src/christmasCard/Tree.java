@@ -24,7 +24,7 @@ public class Tree extends GUIApplication {
 	}
 
 	public static void main(String[] args) {
-		 card = new Tree(800, 550);
+		 card = new Tree(1600, 1600);
 
 		 Thread runner = new Thread(card);
 

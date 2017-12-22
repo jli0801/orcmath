@@ -1,10 +1,14 @@
 package christmasCard;
 
+import java.awt.Color;
+import java.awt.Font;
+import java.io.File;
 import java.util.List;
 
 import guiTeacher.components.Action;
 import guiTeacher.components.AnimatedComponent;
 import guiTeacher.components.Button;
+import guiTeacher.components.StyledComponent;
 import guiTeacher.components.TextArea;
 import guiTeacher.interfaces.Visible;
 import guiTeacher.userInterfaces.FullFunctionScreen;
@@ -29,7 +33,10 @@ public class MainScreen extends FullFunctionScreen {
 		 setScreen(screen1);*/
 	@Override
 	public void initAllObjects(List<Visible> viewObjects) {
-	 Button open = new Button((getWidth()-120)/2,getHeight()-60,100,30,"Continue...",new Action() 
+		setBackground(new Color(0, 128, 0));
+	 StyledComponent.setButtonOutline(true);
+
+	 Button open = new Button(800,675,100,30,"Continue...",new Action() 
 	 {
 		 public void act() {
 
@@ -38,11 +45,23 @@ public class MainScreen extends FullFunctionScreen {
 		 }
 
 		 });
-
+	 	
 		 viewObjects.add(open);
 
-		textArea = new TextArea(175,250,1000,1000, "HAPPY CHRISTMAS! MERRY HOLIDAYS! MERRY NEW YEAR!");
+		textArea = new TextArea(0,90,1000,1000, "MERRY CHRISTMAS! \nHAPPY HOLIDAYS!\n HAPPY NEW YEAR!");
+		textArea.setCustomTextColor(new Color(179, 0, 0));
+		try {
+			File fontFile = new File("resources/christmas.ttf");
+			//			File fontFile = new File("resources//DayRoman.ttf");
+			Font font = Font.createFont(Font.TRUETYPE_FONT, fontFile);
+			Font baseFont=font.deriveFont(96f);
+			textArea.setFont(baseFont);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		viewObjects.add(textArea);
+		viewObjects.add(new Banner(1600));
+	//	viewObjects.add(new Snowballs());
 
 	}
 

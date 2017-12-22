@@ -1,10 +1,14 @@
 package christmasCard;
 
+import java.awt.Color;
+import java.awt.Font;
+import java.io.File;
 import java.util.List;
 
 import guiTeacher.components.Action;
 import guiTeacher.components.AnimatedComponent;
 import guiTeacher.components.Button;
+import guiTeacher.components.StyledComponent;
 import guiTeacher.components.TextArea;
 import guiTeacher.interfaces.Visible;
 import guiTeacher.userInterfaces.FullFunctionScreen;
@@ -25,7 +29,10 @@ public class HolidayScreen extends FullFunctionScreen {
 
 	@Override
 	public void initAllObjects(List<Visible> viewObjects) {
-		 Button back = new Button((getWidth()-120)/2,getHeight()-60,100,30,"Go back.",new Action() 
+		setBackground(new Color(0, 128, 0));
+		 StyledComponent.setButtonOutline(true);
+
+		 Button back = new Button(800,675,100,30,"Go back.",new Action() 
 		 {
 			 public void act() {
 
@@ -34,17 +41,23 @@ public class HolidayScreen extends FullFunctionScreen {
 			 }
 
 			 });
-
+		
 			 viewObjects.add(back);
 
-			textArea = new TextArea(175,250,1000,1000, "Enjoy these cute Pokemons in holiday gear!");
+			textArea = new TextArea(0,90,500,650, "Enjoy these cute Pokemons in holiday gear!");
+			textArea.setCustomTextColor(new Color(179, 0, 0));
+			try {
+				File fontFile = new File("resources/christmas.ttf");
+				//			File fontFile = new File("resources//DayRoman.ttf");
+				Font font = Font.createFont(Font.TRUETYPE_FONT, fontFile);
+				Font baseFont=font.deriveFont(96f);
+				textArea.setFont(baseFont);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 			viewObjects.add(textArea);
+			viewObjects.add(new MovingPokemon());
 		}
 	
-
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
-	}
 
 }
