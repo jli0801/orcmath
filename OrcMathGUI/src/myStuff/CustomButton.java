@@ -13,12 +13,12 @@ public class CustomButton extends Button implements CustomLabel {
 
 	public String StringOne;
 	public String StringTwo;
+	private Color color;
 	
 	public CustomButton(int x, int y, int w, int h, String text, Action action) {
 		super(x, y, w, h, text, action);
 		// TODO Auto-generated constructor stub
-		updateString1(StringOne);
-		updateString2(StringTwo);
+		update();
 	}
 	public void CustomButton(int x, int y)
 	{
