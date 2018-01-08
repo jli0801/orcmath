@@ -1,11 +1,6 @@
 package myStuff;
 
 public interface MoveInterfaceJessica {
+	ButtonInterfaceJessica getAButton(int a);
 	
-	static ButtonInterfaceJessica getButton() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	Object get(int sequenceIndex);
-	ButtonInterfaceJessica getAButton();
 }

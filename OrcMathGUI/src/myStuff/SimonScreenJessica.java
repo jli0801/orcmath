@@ -51,7 +51,7 @@ public class SimonScreenJessica extends ClickableScreen implements Runnable {
 		sequenceIndex = 0;
 	}
 	private void playSequence() {
-		ButtonInterfaceJessica b = getAButton();
+	 ButtonInterfaceJessica b = getButton();
 		for(int i = 0; i<sequence.size(); i++)
 		{
 			if(b != null)
@@ -60,14 +60,15 @@ public class SimonScreenJessica extends ClickableScreen implements Runnable {
 			}
 			else
 			{
-				b = MoveInterfaceJessica.getButton();
+				b = sequence.get(i).getAButton();
 				
 				int sleepTime = roundNumber*3;
+				b.highlight();
 				Thread sleepT = new Thread(new Runnable(){
 
 					public void run()
 					{
-						b.highlight();
+						
 						try 
 						{
 							Thread.sleep(sleepTime);
@@ -77,11 +78,11 @@ public class SimonScreenJessica extends ClickableScreen implements Runnable {
 							// TODO Auto-generated catch block
 							e.printStackTrace();
 						}
-						b.dim();
 					}
 						
 					});
 				sleepT.start();
+				b.dim();
 			}
 			
 		}
@@ -114,7 +115,6 @@ public class SimonScreenJessica extends ClickableScreen implements Runnable {
 	@Override
 	public void initAllObjects(List<Visible> viewObjects) {
 		setBackground(Color.DARK_GRAY);
-		textBox.setCustomTextColor(Color.LIGHT_GRAY);
 		addButtons();
 		run();
 		for(ButtonInterfaceJessica j: buttonInt)
@@ -123,6 +123,7 @@ public class SimonScreenJessica extends ClickableScreen implements Runnable {
 		}
 		progressInt = getProgress();
 		textBox = new TextArea(130,230,300,40,"Let's play Simon!");
+		textBox.setCustomTextColor(Color.LIGHT_GRAY);
 		sequence = new ArrayList<MoveInterfaceJessica>();
 		//add 2 moves to start
 		lastSelected = -1;
@@ -148,8 +149,8 @@ public class SimonScreenJessica extends ClickableScreen implements Runnable {
 	}
 
 	private ProgressInterfaceJessica getProgress() {
-		// TODO Auto-generated method stub
-		return null;
+		ProgressVincent progress = new ProgressVincent(100,100,100,100);
+		return progress;
 	}
 
 	private void addButtons() {
@@ -157,13 +158,20 @@ public class SimonScreenJessica extends ClickableScreen implements Runnable {
 		//parttwostep3
 		numButton = 6;
 		Color[] colorArr = new Color[6];
+		colorArr[0] = Color.blue;
+		colorArr[1] = Color.red;
+		colorArr[2] = Color.GREEN;
+		colorArr[3] = Color.gray;
+		colorArr[4] = Color.pink;
+		colorArr[5] = Color.YELLOW;
+		
 		for(int i =0; i<buttonInt.length; i--)
 		{
-			final ButtonInterfaceJessica b = getAButton();
+			final ButtonInterfaceJessica b = getButton();
 			buttonInt[i] = b;
-			b.setColor(Color.BLUE); //fix
-			b.setX(i*30);
-			b.setY(i*25);
+			b.setColor(colorArr[i]); //fix
+			b.setX(i*55);
+			b.setY(i*55);
 			
 		
 			b.setAction(new Action(){
@@ -213,11 +221,12 @@ public class SimonScreenJessica extends ClickableScreen implements Runnable {
 		}
 		
 	}
-
-	private ButtonInterfaceJessica getAButton() {
-		// TODO Auto-generated method stub
-		return null;
+	
+	private ButtonInterfaceJessica getButton() {
+		ButtonVincent button = new ButtonVincent(0, 0, 50, 50, "", null);
+		return button;
 	}
+
 
 
 }
