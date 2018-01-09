@@ -14,18 +14,22 @@ public class ButtonVincent extends Button implements ButtonInterfaceJessica {
 
 	@Override
 	public void setColor(Color g) {
-		// TODO Auto-generated method stub
-		this.setBackgroundColor(g);
+		color = c;
+		this.setBackground(c);
+		update();
+		
 	}
 	
 	@Override
 	public void dim() {
-		// TODO Auto-generated method stub
+		this.setBackground(this.color);
+		update();
 	}
 
 	@Override
 	public void highlight() {
-		// TODO Auto-generated method stub
+		this.setBackground(Color.WHITE);
+		update();
 		
 	}
 }
