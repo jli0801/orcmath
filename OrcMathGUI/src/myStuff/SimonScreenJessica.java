@@ -51,7 +51,7 @@ public class SimonScreenJessica extends ClickableScreen implements Runnable {
 		sequenceIndex = 0;
 	}
 	private void playSequence() {
-	 ButtonInterfaceJessica b = getButton();
+	ButtonInterfaceJessica b = getButton();
 		for(int i = 0; i<sequence.size(); i++)
 		{
 			if(b != null)
@@ -144,13 +144,11 @@ public class SimonScreenJessica extends ClickableScreen implements Runnable {
 	}
 
 	private MoveInterfaceJessica getMove(int bIndex) {
-		// TODO Auto-generated method stub
-		return null;
+		return getAButton(bIndex);
 	}
 
 	private ProgressInterfaceJessica getProgress() {
-		ProgressVincent progress = new ProgressVincent(100,100,100,100);
-		return progress;
+		return new ProgressVincent();
 	}
 
 	private void addButtons() {
@@ -223,7 +221,7 @@ public class SimonScreenJessica extends ClickableScreen implements Runnable {
 	}
 	
 	private ButtonInterfaceJessica getButton() {
-		ButtonVincent button = new ButtonVincent(0, 0, 50, 50, "", null);
+		ButtonVincent = new ButtonVincent(x,y,w,h,"",null);
 		return button;
 	}
 
