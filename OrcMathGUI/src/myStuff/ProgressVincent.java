@@ -1,5 +1,6 @@
 package myStuff;
 
+import java.awt.Color;
 import java.awt.Graphics2D;
 
 import guiTeacher.components.Component;
@@ -42,6 +43,18 @@ public class ProgressVincent extends Component implements ProgressInterfaceJessi
 	{
 		loss = true;
 		update();
+	}
+
+	@Override
+	public ProgressInterfaceJessica setRound(int round) {
+		return null;
+		
+	}
+
+	@Override
+	public ProgressInterfaceJessica setSequenceSize(int size) {
+		return null;
+		
 	}
 
 }

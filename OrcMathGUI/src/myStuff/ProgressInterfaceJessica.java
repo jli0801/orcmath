@@ -5,12 +5,12 @@ import guiTeacher.interfaces.Visible;
 public interface ProgressInterfaceJessica extends Visible {
 
 	void add(Object randomMove);
-
-	
-
-	static void gameOver();
-	static void setRound(int round);
-	static void setSequenceSize(int size);
+	 static void gameOver() {
+		// TODO Auto-generated method stub
+		
+	}
+	 ProgressInterfaceJessica setRound(int round);
+	 ProgressInterfaceJessica setSequenceSize(int size);
 
 	
 

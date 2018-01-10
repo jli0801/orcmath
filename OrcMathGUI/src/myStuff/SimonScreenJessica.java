@@ -41,8 +41,8 @@ public class SimonScreenJessica extends ClickableScreen implements Runnable {
 		acceptUser = false;
 		roundNumber++;
 		sequence.add(randomMove());
-		ProgressInterfaceJessica.setRound(roundNumber);
-		ProgressInterfaceJessica.setSequenceSize(sequence.size());
+		setRound(roundNumber);
+		setSequenceSize(sequence.size());
 		changeText("Simon's turn.");
 		textBox.setText("");
 		playSequence();
@@ -50,8 +50,20 @@ public class SimonScreenJessica extends ClickableScreen implements Runnable {
 		acceptUser = true;
 		sequenceIndex = 0;
 	}
+	private ProgressInterfaceJessica setSequenceSize(int size) {
+		ProgressVincent seqSize = new ProgressVincent(250,50,400,200);
+		return setSequenceSize(size);
+		
+	}
+
+	private ProgressInterfaceJessica setRound(int roundNumber2) {
+		ProgressVincent pro = new ProgressVincent(250,50,400,200);
+		return setRound(roundNumber2);
+		
+	}
+
 	private void playSequence() {
-	ButtonInterfaceJessica b = getButton();
+	ButtonInterfaceJessica b = getButton(50,70,60,60);
 		for(int i = 0; i<sequence.size(); i++)
 		{
 			if(b != null)
@@ -140,15 +152,13 @@ public class SimonScreenJessica extends ClickableScreen implements Runnable {
 		    while(index == lastSelected){
 		        index = (int)(Math.random()*buttonInt.length);
 		    }
-		    return getMove(index);
+		    return new MoveVincent(buttonInt[index]);
 	}
 
-	private MoveInterfaceJessica getMove(int bIndex) {
-		return getAButton(bIndex);
-	}
+	
 
 	private ProgressInterfaceJessica getProgress() {
-		return new ProgressVincent();
+		return new ProgressVincent(250,50,400,200);
 	}
 
 	private void addButtons() {
@@ -165,7 +175,7 @@ public class SimonScreenJessica extends ClickableScreen implements Runnable {
 		
 		for(int i =0; i<buttonInt.length; i--)
 		{
-			final ButtonInterfaceJessica b = getButton();
+			final ButtonInterfaceJessica b = getButton(50,i*50+20,60,60);
 			buttonInt[i] = b;
 			b.setColor(colorArr[i]); //fix
 			b.setX(i*55);
@@ -220,8 +230,8 @@ public class SimonScreenJessica extends ClickableScreen implements Runnable {
 		
 	}
 	
-	private ButtonInterfaceJessica getButton() {
-		ButtonVincent = new ButtonVincent(x,y,w,h,"",null);
+	private ButtonInterfaceJessica getButton(int x,int y,int w, int h) {
+		ButtonVincent button = new ButtonVincent(x,y,w,h,"",null);
 		return button;
 	}
 

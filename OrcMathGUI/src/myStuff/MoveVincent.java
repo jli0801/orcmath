@@ -1,10 +1,15 @@
 package myStuff;
 
-public class MoveVincent implements MoveInterfaceJessica {
+public  class MoveVincent implements MoveInterfaceJessica {
 
-	ButtonInterfaceVincent button;
+	ButtonInterfaceJessica button;
+	public MoveVincent(ButtonInterfaceJessica buttonInterfaceJessica) {
+		this.button = button;
+	}
 	@Override
-	public ButtonInterfaceJessica getAButton(int a) {
+	public ButtonInterfaceJessica getAButton() {
 		return button;
 	}
+	
+	
 }
