@@ -11,7 +11,8 @@ import guiTeacher.userInterfaces.ClickableScreen;
 
 public class SimonScreenJessica extends ClickableScreen implements Runnable {
 
-	public ProgressInterfaceJessica progressInt;
+	public ProgressVincent progressInt = new ProgressVincent(250,50,400,200);
+	
 	public ButtonInterfaceJessica[] buttonInt;
 	public Color[] colorArr;
 	private ArrayList<MoveInterfaceJessica> sequence;
@@ -34,7 +35,7 @@ public class SimonScreenJessica extends ClickableScreen implements Runnable {
 
 	@Override
 	public void run() {
-		 textBox.setText("Game");
+		 textBox.setText("");
 		 nextRound();
 	}
 
@@ -42,8 +43,8 @@ public class SimonScreenJessica extends ClickableScreen implements Runnable {
 		acceptUser = false;
 		roundNumber++;
 		sequence.add(randomMove());
-		setRound(roundNumber);
-		setSequenceSize(sequence.size());
+		progressInt.setRound(roundNumber);
+		progressInt.setSequenceSize(sequence.size());
 		changeText("Simon's turn.");
 		textBox.setText("");
 		playSequence();
@@ -51,17 +52,20 @@ public class SimonScreenJessica extends ClickableScreen implements Runnable {
 		acceptUser = true;
 		sequenceIndex = 0;
 	}
+	
+/*
 	private ProgressInterfaceJessica setSequenceSize(int size) {
 		ProgressVincent seqSize = new ProgressVincent(250,50,400,200);
-		return setSequenceSize(size);
+		seqSize.setSequenceSize(size);
 		
 	}
 
 	private ProgressInterfaceJessica setRound(int roundNumber2) {
 		ProgressVincent pro = new ProgressVincent(250,50,400,200);
-		return setRound(roundNumber2);
+		pro.setRound(roundNumber2);
 		
 	}
+*/
 
 	private void playSequence() {
 	ButtonInterfaceJessica b = getButton(50,70,60,60);
@@ -129,7 +133,6 @@ public class SimonScreenJessica extends ClickableScreen implements Runnable {
 	public void initAllObjects(List<Visible> viewObjects) {
 		setBackground(Color.DARK_GRAY);
 		addButtons();
-		run();
 		for(int i = 0;i <buttonInt.length;i++)
 		{ 
 			System.out.println(buttonInt[i]);
@@ -146,6 +149,7 @@ public class SimonScreenJessica extends ClickableScreen implements Runnable {
 		roundNumber = 0;
 		viewObjects.add(progressInt);
 		viewObjects.add(textBox);
+		run();
 
 	}
 
@@ -159,7 +163,7 @@ public class SimonScreenJessica extends ClickableScreen implements Runnable {
 
 	
 
-	private ProgressInterfaceJessica getProgress() {
+	private ProgressVincent getProgress() {
 		return new ProgressVincent(250,50,400,200);
 	}
 
@@ -167,7 +171,7 @@ public class SimonScreenJessica extends ClickableScreen implements Runnable {
 		sequence = new ArrayList<MoveInterfaceJessica>(); //array
 		buttonInt = new ButtonInterfaceJessica[6]; //allB
 		//parttwostep3
-		numButton = 6;
+		//numButton = 6;
 		Color[] colorArr = new Color[6];
 		colorArr[0] = Color.blue;
 		colorArr[1] = Color.red;
