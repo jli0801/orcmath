@@ -25,6 +25,7 @@ public class SimonScreenJessica extends ClickableScreen implements Runnable {
 	private boolean acceptUser;
 	private SimonScreenJessica screen;
 	
+	
 	public SimonScreenJessica(int width, int height) {
 		super(width, height);
 		Thread app = new Thread(this);
@@ -33,7 +34,7 @@ public class SimonScreenJessica extends ClickableScreen implements Runnable {
 
 	@Override
 	public void run() {
-		 textBox.setText("");
+		 textBox.setText("Game");
 		 nextRound();
 	}
 
@@ -129,9 +130,10 @@ public class SimonScreenJessica extends ClickableScreen implements Runnable {
 		setBackground(Color.DARK_GRAY);
 		addButtons();
 		run();
-		for(ButtonInterfaceJessica j: buttonInt)
+		for(int i = 0;i <buttonInt.length;i++)
 		{ 
-		    viewObjects.add(j); 
+			System.out.println(buttonInt[i]);
+		    viewObjects.add(buttonInt[i]); 
 		}
 		progressInt = getProgress();
 		textBox = new TextArea(130,230,300,40,"Let's play Simon!");
@@ -162,7 +164,8 @@ public class SimonScreenJessica extends ClickableScreen implements Runnable {
 	}
 
 	private void addButtons() {
-		ButtonInterfaceJessica[] buttonInt = new ButtonInterfaceJessica[6];
+		sequence = new ArrayList<MoveInterfaceJessica>(); //array
+		buttonInt = new ButtonInterfaceJessica[6]; //allB
 		//parttwostep3
 		numButton = 6;
 		Color[] colorArr = new Color[6];
@@ -173,10 +176,11 @@ public class SimonScreenJessica extends ClickableScreen implements Runnable {
 		colorArr[4] = Color.pink;
 		colorArr[5] = Color.YELLOW;
 		
-		for(int i =0; i<buttonInt.length; i--)
+		for(int i =0; i<buttonInt.length; i++)
 		{
 			final ButtonInterfaceJessica b = getButton(50,i*50+20,60,60);
-			buttonInt[i] = b;
+			//length is 6 so buttons 0 to 5
+			buttonInt[i] = b; //fill buttons
 			b.setColor(colorArr[i]); //fix
 			b.setX(i*55);
 			b.setY(i*55);
@@ -208,22 +212,25 @@ public class SimonScreenJessica extends ClickableScreen implements Runnable {
 							});
 						blinkButton.start();
 					}
+					
+					if (b == sequence.get(sequenceIndex).getAButton()) //change
+					{
+						sequenceIndex++;
+					}
+					else
+					{
+						ProgressInterfaceJessica.gameOver();
+					}
+					if(sequenceIndex == sequence.size())
+					{ 
+					    Thread nextRound = new Thread(SimonScreenJessica.this); 
+					    nextRound.start(); 
+					}
 				}
 
 				});
 			
-			if (b == sequence.get(sequenceIndex).getAButton()) //change
-			{
-				sequenceIndex++;
-				if(sequenceIndex == sequence.size()){ 
-				    Thread nextRound = new Thread(SimonScreenJessica.this); 
-				    nextRound.start(); 
-				}
-			}
-			else
-			{
-				ProgressInterfaceJessica.gameOver();
-			}
+		
 			
 			
 		}

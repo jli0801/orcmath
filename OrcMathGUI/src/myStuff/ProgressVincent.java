@@ -2,6 +2,7 @@ package myStuff;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
+import java.util.ArrayList;
 
 import guiTeacher.components.Component;
 
@@ -9,6 +10,7 @@ public class ProgressVincent extends Component implements ProgressInterfaceJessi
 	private int roundNum;
 	private int sequenceNum;
 	private boolean loss;
+	private ArrayList<ProgressInterfaceJessica> sequenceUser;
 	
 	public ProgressVincent(int x, int y, int w, int h) {
 		super(250,50,400,200);
@@ -46,14 +48,15 @@ public class ProgressVincent extends Component implements ProgressInterfaceJessi
 	}
 
 	@Override
-	public ProgressInterfaceJessica setRound(int round) {
-		return null;
+	public void setRound(int round) {
+		roundNum = round;
+	
 		
 	}
 
 	@Override
-	public ProgressInterfaceJessica setSequenceSize(int size) {
-		return null;
+	public void setSequenceSize(int size) {
+		sequenceNum = size;
 		
 	}
 
