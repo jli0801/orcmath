@@ -13,6 +13,7 @@ public class Screen extends FullFunctionScreen {
 	public TextArea text;
 	public boolean choseL;
 	public boolean choseW;
+	
 	public Screen(int width, int height) {
 		super(width, height);
 		choseL = false;
@@ -22,34 +23,35 @@ public class Screen extends FullFunctionScreen {
 
 	@Override
 	public void initAllObjects(List<Visible> viewObjects) {
-		choseL = false;
-		choseW = false;
-		text.setText("");
+		text = new TextArea(50, 50, 100, 100, "");
+	
 		
 		Button lose = new Button(100, 150, 100,30,"Lose", new Action() {
 			
 			@Override
 			public void act() {
-				if(!choseL && !choseW)
+				if(choseL && !choseW)
 				{
 				text.setText("You lose!");
 				choseL = true; 
-				choseW = true;
+				choseW = false;
 				}
+				text.setText("You pressed win already.");
 			}
 		});
 		
 		
-		Button win = new Button(100, 150, 100,30,"Win", new Action() {
+		Button win = new Button(250, 150, 100,30,"Win", new Action() {
 			
 			@Override
 			public void act() {
-				if(!choseL && !choseW)
+				if(!choseL && choseW)
 				{
 				text.setText("You Win!");
-				choseL = true; 
+				choseL = false; 
 				choseW = true;
 				}
+				text.setText("You pressed lose already.");
 			}
 		});
 		viewObjects.add(lose);
