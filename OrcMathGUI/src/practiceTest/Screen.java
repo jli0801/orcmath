@@ -11,13 +11,11 @@ import guiTeacher.userInterfaces.FullFunctionScreen;
 public class Screen extends FullFunctionScreen {
 
 	public TextArea text;
-	public boolean choseL;
-	public boolean choseW;
+	
 	
 	public Screen(int width, int height) {
 		super(width, height);
-		choseL = false;
-		choseW = false;
+		
 		// TODO Auto-generated constructor stub
 	}
 
@@ -30,13 +28,10 @@ public class Screen extends FullFunctionScreen {
 			
 			@Override
 			public void act() {
-				if(choseL && !choseW)
-				{
+				
 				text.setText("You lose!");
-				choseL = true; 
-				choseW = false;
-				}
-				text.setText("You pressed win already.");
+				lose.setEnabled(false);
+				win.setEnabled(false);
 			}
 		});
 		
@@ -45,13 +40,10 @@ public class Screen extends FullFunctionScreen {
 			
 			@Override
 			public void act() {
-				if(!choseL && choseW)
-				{
+				
 				text.setText("You Win!");
-				choseL = false; 
-				choseW = true;
-				}
-				text.setText("You pressed lose already.");
+				lose.setEnabled(false);
+				win.setEnabled(false);
 			}
 		});
 		viewObjects.add(lose);
