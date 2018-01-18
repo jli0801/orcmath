@@ -9,22 +9,15 @@ import guiTeacher.interfaces.Visible;
 import guiTeacher.userInterfaces.FullFunctionScreen;
 
 public class Screen extends FullFunctionScreen {
-
 	public TextArea text;
 	public Button lose;
 	public Button win;
-	
 	public Screen(int width, int height) {
 		super(width, height);
-		
-		// TODO Auto-generated constructor stub
 	}
-
 	@Override
 	public void initAllObjects(List<Visible> viewObjects) {
 		text = new TextArea(50, 50, 100, 100, "");
-	
-		
 		Button lose = new Button(100, 150, 100,30,"Lose", new Action() {
 			
 			@Override
@@ -35,8 +28,6 @@ public class Screen extends FullFunctionScreen {
 				win.setEnabled(false);
 			}
 		});
-		
-		
 		Button win = new Button(250, 150, 100,30,"Win", new Action() {
 			
 			@Override
