@@ -11,7 +11,8 @@ import guiTeacher.userInterfaces.FullFunctionScreen;
 public class Screen extends FullFunctionScreen {
 
 	public TextArea text;
-	
+	public Button lose;
+	public Button win;
 	
 	public Screen(int width, int height) {
 		super(width, height);
@@ -30,7 +31,7 @@ public class Screen extends FullFunctionScreen {
 			public void act() {
 				
 				text.setText("You lose!");
-				lose.setEnabled(false);
+			//	lose.setEnabled(false);
 				win.setEnabled(false);
 			}
 		});
@@ -43,7 +44,7 @@ public class Screen extends FullFunctionScreen {
 				
 				text.setText("You Win!");
 				lose.setEnabled(false);
-				win.setEnabled(false);
+			//	win.setEnabled(false);
 			}
 		});
 		viewObjects.add(lose);
